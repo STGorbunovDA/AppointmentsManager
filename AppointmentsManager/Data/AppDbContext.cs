@@ -1,7 +1,4 @@
-﻿using AppointmentsManager.Data.Models;
-using System.Collections.Generic;
-
-namespace AppointmentsManager.Data
+﻿namespace AppointmentsManager.Data
 {
     //Add-Migration -Name Initial -OutputDir "Data/Migrations"
     //Update-Database
