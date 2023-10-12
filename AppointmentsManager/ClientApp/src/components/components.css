@@ -1,0 +1,259 @@
+body {
+    margin: 0 5px;
+    padding: 0%;
+}
+
+.rowbom {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.content-center {
+    align-content: center;
+}
+
+.content-center-vertical {
+    display: flex; justify-content: center; align-items: center;
+}
+
+.add-btn {
+    position: fixed;
+    top: 30px;
+    right: 80px;
+}
+
+.btn {
+    width: 80px;
+    background: rgb(219, 214, 214);
+    box-shadow: 0 0 1px 2px rgb(218, 215, 215);
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    color: #000;
+}
+
+.btn.add {
+    background: rgb(16, 122, 67);
+    font: optional 30px;
+    font-weight: bold;
+    box-shadow: 0 0 2px 2px rgb(39, 153, 39);
+    padding: 5px 13px;
+    color: #fff;
+    font-family: Tahoma;
+}
+
+
+.spacer-20 {
+    padding-top: 20px;
+}
+
+.modal-title {
+    margin-right: 20px;
+    /* Позволяет этому элементу занимать все доступное место */
+}
+
+.parent-container {
+    display: flex;
+    justify-content: flex-end;
+    /* Выравнивание вправо */
+}
+
+.me-15 {
+    margin-right: 15px;
+}
+
+.me-10 {
+    margin-right: 10px;
+}
+
+.ms-10 {
+    margin-left: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.float-right{
+    float: right;
+}
+
+.filterBom {
+    border-bottom: 1px #ccc solid;
+    margin-bottom: 20px;
+}
+
+.filter-itemsBom div {
+    margin-right: 20px;
+}
+
+.filter-itemsBom input,
+.filter-itemsBom select {
+    margin-left: 0;
+    margin-top: 5px;
+}
+
+.filter-itemsBom .btn {
+    height: 20px;
+    width: 60px;
+}
+
+.underline {
+    border-bottom: 2px solid rgb(203, 197, 197);
+}
+
+.hdr {
+    font-weight: bold;
+}
+
+.column {
+    padding: 3px 6px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.column.id {
+    width: 20px;
+}
+
+.column.title {
+    width: 17%;
+}
+
+.column.description {
+    width: 35%;
+}
+
+.column.importance {
+    width: 10%;
+}
+
+.column.date {
+    width: 110px;
+}
+
+.column.time {
+    width: 40px;
+}
+
+.column.adress {
+    width: 15%;
+}
+
+.column.edit {
+    width: 80px;
+}
+
+.bc-yellow {
+    color: black;
+}
+
+.bc-green {
+    color: green;
+}
+
+.bc-gold {
+    color: goldenrod;
+}
+
+.bc-red {
+    color: red;
+}
+
+.column.delete {
+    width: 120px;
+    color: red;
+}
+
+.not-allowed {
+    cursor: not-allowed;
+}
+
+.no-event {
+    pointer-events: none;
+}
+
+.waiting {
+    cursor: wait;
+}
+
+.loading {
+    width: 0px;
+    font-weight: bold;
+    animation-name: loading;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    overflow: hidden;
+}
+
+.modal{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.385);
+    width: 100%;
+    height: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
+.modal-container{
+        background: #fff;
+        border-radius: 9px;
+        padding: 8px;
+        min-width: 520px;
+        max-width: 85vw;
+}
+.modal-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.notifications {
+    font-weight: bold;
+    animation-name: notification;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+@keyframes notification {
+    0% {
+        color: gold;
+    }
+
+    50% {
+        color: red;
+    }
+
+    100% {
+        color: blue;
+    }
+}
+
+@keyframes loading {
+    0% {
+        width: 0px;
+    }
+
+    50% {
+        width: 4px;
+    }
+
+    100% {
+        width: 15px;
+    }
+}
