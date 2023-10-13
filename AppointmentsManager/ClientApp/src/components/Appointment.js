@@ -4,19 +4,19 @@ export function Appointment(props) {
     const LevelOfImportance = ["Very Low", "Low", "Normal", "Medium", "High", "Very High"]
 
     return (
-        <div className={`rowbom underline ${props.item.deleted ? 'bc-red' : props.item.done ? 'bc-green' : ''}`}>
-            <div className="column id">{props.item.ID}</div>
-            <div className="column title">{props.item.Title}</div>
-            <div className="column description">{props.item.Description}</div>
+        <div className={`rowbom items-center underline ${props.item.deleted ? 'bc-red' : props.item.done ? 'bc-green' : ''}`} key={props.item.id}>
+            <div className="column id">{props.item.id}</div>
+            <div className="column title">{props.item.title}</div>
+            <div className="column description">{props.item.description}</div>
             <div className={`column importance ${
-                props.item.LevelOfImportance === 2  ? 'bc-yellow' :
-                props.item.LevelOfImportance === 3  ? 'bc-green' : 
-                props.item.LevelOfImportance === 4 ? 'bc-gold' : 
-                props.item.LevelOfImportance === 5 ? 'bc-red' : ''}`}>
-                    {LevelOfImportance[props.item.LevelOfImportance]}</div>
-            <div className="column date">{props.item.Date}</div>
-            <div className="column time">{props.item.Time}</div>
-            <div className="column adress">{props.item.Adress}</div>
+                props.item.levelOfImportance === 2  ? 'bc-yellow' :
+                props.item.levelOfImportance === 3  ? 'bc-green' : 
+                props.item.levelOfImportance === 4 ? 'bc-gold' : 
+                props.item.levelOfImportance === 5 ? 'bc-red' : ''}`}>
+                    {LevelOfImportance[props.item.levelOfImportance]}</div>
+            <div className="column date">{props.item.date}</div>
+            <div className="column time">{props.item.time}</div>
+            <div className="column adress">{props.item.adress}</div>
             <div className={`column edit`}>
                 <div className={`btn edit`}>Edit</div>
             </div>

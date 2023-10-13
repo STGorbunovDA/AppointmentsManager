@@ -91,7 +91,7 @@
             return Ok("Appointment update successfully!");
         }
 
-        // POST: api/Appointment
+        // POST: api/appointment
         [HttpPost]
         public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
         {

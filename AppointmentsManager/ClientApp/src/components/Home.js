@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Delete } from "./Delete"
 import { Edit } from "./Edit"
 import { New } from "./New"
-import { testData } from "./Lib";
+import { getDefault, openModal } from "./Lib";
 
 import './components.css';
 import { Appointment } from "./Appointment";
@@ -11,27 +11,31 @@ export function Home(props) {
 
   const [dataList, setDataList] = useState([])
 
+  const [refreshData, setRefreshData] = useState(0)
+
   useEffect(() => {
-    setDataList(testData)
-  }, [])
+    getDefault().then(data=>{
+      setDataList(data)
+    }).catch(e => console.log("Error inside home: ", e))
+    
+  }, [refreshData])
 
   return (
     <main>
       <h1>Manage Your Appointments / Dates very easy</h1>
       <p>This powerful web application helps you to manage your dates very easy.</p>
       <div className="add-btn rowbom items-center content-center">
-        <div className="btn add">+</div>
+        <div className="btn add" onClick={()=> openModal("new-modal")}>+</div>
       </div>
 
-      <div className="notifications spacer-20">This is a test TEXT</div>
+      <div className="notifications spacer-40"></div>
 
       <div className="parent-container">
-        <section className="rowbom justify-btw items-center filterBom">
-          <div className="modal-title">Filter</div>
+        <section className="rowbom items-center filterBom">
           <div className="rowbom items-center filter-itemsBom">
-            <button className="me-15" >Clear Filters</button>
+            <button className="me-15 mt-15" >Clear Filters</button>
             <div>
-              <label htmlFor="All_f">All</label> <br />
+              <label className="ms-10" htmlFor="All_f">All</label> <br />
               <input type="checkbox" id="All_f" name="All" />
             </div>
 
@@ -101,8 +105,8 @@ export function Home(props) {
           dataList.map(item => <Appointment item={item} key={item.id} />)
       }
       <section>
-        <section className="modal new-modal">
-          <New />
+        <section className="modal new-modal hidden">
+          <New refreshApp={setRefreshData}/>
         </section>
         <section className="modal edit-modal hidden">
           <Edit />
