@@ -6,8 +6,6 @@ export const testData = [
     { ID: 4, Title: "Title 4", Description: "Description 4", LevelOfImportance: 2, Date: "10-04-2013", Time: "19:32", Adress: "Be 7000" }
 ]
 
-const url = "api/appointment"
-
 export const entry = {
     title: "Test title",
     description: "Test description",
@@ -30,6 +28,12 @@ export const filter = {
     SpecifiedTime: null
 }
 
+export const activeId = {
+    id: 0
+}
+
+const url = "api/appointment"
+
 export async function getDefault() {
     const res = await fetch(url)
     if (!res.ok && !res.status !== 200) {
@@ -41,9 +45,27 @@ export async function getDefault() {
     return await res.json()
 }
 
+export async function getAppointments(filter_){
+    const res = await fetch(url + "/filters", {
+        method: "POST",
+        body: JSON.stringify(filter_),
+        headers: {
+            "content-type": "application/json"
+        }
+    })
+
+    if (!res.ok) {
+        console.log("It sucked at gettings appointments with filters: ", res)
+        notifyUser("Something went wrong, please clear the filter and try again.")
+        return []
+    }
+
+    return await res.json()
+}
+
 export async function postAppointment(newApp) {
     const res = await fetch(url, {
-        method:"POST",
+        method: "POST",
         body: JSON.stringify(newApp),
         headers: {
             "content-type": "application/json"
@@ -53,10 +75,41 @@ export async function postAppointment(newApp) {
     if (!res.ok) {
         console.log("It sucked at creating default appointment: ", res)
         notifyUser("We could not create your appointment. please try again.")
-        return {msg: res}
+        return { msg: res }
     }
 
     return await res.json()
+}
+
+export async function updateAppointment(updateApp) {
+    const res = await fetch(url + "/" + updateApp.id, {
+        method: "PUT",
+        body: JSON.stringify(updateApp),
+        headers: {
+            "content-type": "application/json"
+        }
+    })
+
+    if (!res.ok) {
+        console.log("It sucked at update appointment: ", res)
+        notifyUser("We could not update your appointment. please try again.")
+        return { msg: res }
+    }
+
+    return res
+}
+
+export async function deleteAppointmen(id) {
+    const res = await fetch(url + "/" + id, {
+        method: "DELETE"
+    })
+    if (!res.ok) {
+        console.log("It sucked at deleting appointment: ", res)
+        notifyUser("Something went wrong, please refresh the page.")
+        return {msg: res}
+    }
+
+    return res
 }
 
 export function notifyUser(msg) {
@@ -66,29 +119,29 @@ export function notifyUser(msg) {
         setTimeout(() => { notificationE1.innerHTML = "" }, 12000);
 }
 
-export function openModal(modal){
+export function openModal(modal) {
     const modal_ = document.querySelector("." + modal)
-    if(modal_){
+    if (modal_) {
         modal_.classList.remove("hidden")
     }
 }
 
-export function closeModal(modal){
+export function closeModal(modal) {
     const modal_ = document.querySelector("." + modal)
-    if(modal_){
+    if (modal_) {
         modal_.classList.add("hidden")
     }
 }
 
-export function formaredDateToStr(d){
+export function formaredDateToStr(d) {
     const nd = d ? new Date(d) : new Date()
-    const month_ = nd.getMonth() +1;
+    const month_ = nd.getMonth() + 1;
     const monthStr = month_ > 9 ? month_ : 0 + "" + month_;
     const day_ = nd.getDate() > 9 ? nd.getDate() : 0 + "" + nd.getDate();
     return nd.getFullYear() + "-" + monthStr + "-" + day_;
 }
 
-export function formaredTimeToStr(d){
+export function formaredTimeToStr(d) {
     const nd = d ? new Date(d) : new Date()
     const hr_ = nd.getHours() < 9 ? 0 + "" + nd.getHours() : nd.getHours()
     const min_ = nd.getMinutes() < 9 ? 0 + "" + nd.getMinutes() : nd.getMinutes()
